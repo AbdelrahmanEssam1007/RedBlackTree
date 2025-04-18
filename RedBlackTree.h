@@ -177,7 +177,7 @@ class RedBlackTree {
   }
 
   // Public method to insert data into the tree
-  void Insert(const T& data) {
+  bool Insert(const T& data) {
     Node<T>* y = nullptr;  // y will track parent
     Node<T>* x = root;  // x traverses the tree
 
@@ -193,7 +193,7 @@ class RedBlackTree {
       else {
         // Duplicate value found
         std::cout << "ERROR : item already exists ! \n ";
-        return;
+        return false;
       }
     }
 
@@ -209,6 +209,7 @@ class RedBlackTree {
       y->right = node;  // Node is right child
 
     FixInsert(node);  // Fix violations after insertion
+    return true;
   }
 
   // Print the tree visually

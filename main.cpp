@@ -6,10 +6,10 @@
 #include "RedBlackTree.h"
 
 void LoadDictionary(RedBlackTree<std::string>& tree) {
-  std::ifstream file("words.txt");
+  std::ifstream file("Dictionary.txt");
 
   if (!file.is_open()) {
-    std::cerr << "Could not open file.txt" << std::endl;
+    std::cerr << "Could not open Dictionary.txt" << std::endl;
     return;
   }
 
@@ -29,7 +29,7 @@ void SaveInOrder(Node<std::string>* node, std::ofstream& outFile) {
 }
 
 void SaveDictionary(RedBlackTree<std::string>& tree) {
-std::ofstream file("words.txt");
+std::ofstream file("Dictionary.txt");
 
   if (!file.is_open()) {
     std::cerr << "Could not open file.txt" << std::endl;
@@ -38,7 +38,7 @@ std::ofstream file("words.txt");
 
   SaveInOrder(tree.GetRoot(), file);
   file.close();
-  std::cout << "Dictionary saved to words.txt" << std::endl;
+  std::cout << "Dictionary saved to Dictionary.txt" << std::endl;
 
 }
 
@@ -70,7 +70,14 @@ int main() {
       case 2:
         std::cout << "Enter word to insert: ";
         std::cin >> input;
-        tree.Insert(input);
+        if (tree.Insert(input)) {
+          std::cout << "Word inserted successfully.\n";
+          SaveDictionary(tree);
+          std::cout << "Tree height     : " << tree.PrintTreeHeight(tree.GetRoot()) << "\n";
+          std::cout << "Black height    : " << tree.GetBlackHeight(tree.GetRoot()) << "\n";
+          std::cout << "Number of nodes : " << tree.GetSize(tree.GetRoot()) << "\n";
+          break;
+        };
         break;
 
       case 3:
