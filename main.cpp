@@ -96,11 +96,10 @@ int main() {
         break;
 
       case 0:
-        std::cout << "Exiting program. Goodbye!\n";
         break;
 
       default:
-        std::cout << "Invalid choice. Please try again.\n";
+        std::cout << "Invalid choice.\n";
         break;
     }
   }
